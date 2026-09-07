@@ -226,7 +226,7 @@ für genau diese Instanz, keine bewiesene Worst-Case-Schranke.
 cc1, cc2 = st.columns(2)
 cc1.metric("Diese Demo (Contract Net, dezentral)", f"{cmp['cnp_makespan']:.1f} min")
 if cmp["ortools_feasible"]:
-    delta = cmp["cnp_makespan"] - cmp["ortools_makespan"]
+    delta = cmp["ortools_makespan"] - cmp["cnp_makespan"]
     cc2.metric(
         "Zentrale Optimierung (CP-SAT)", f"{cmp['ortools_makespan']:.1f} min",
         delta=f"{delta:+.1f} min ggü. Contract Net", delta_color="inverse",
