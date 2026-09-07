@@ -58,6 +58,11 @@ def build_schedule_figure(instance, result, step, ortools_makespan=None):
         height=120 + 60 * instance.n_agents,
         margin=dict(l=10, r=10, t=30, b=10),
     )
+    fig.update_yaxes(
+        categoryorder="array",
+        categoryarray=[f"Agent {a + 1}" for a in range(instance.n_agents)],
+        autorange="reversed",
+    )
     return fig
 
 
