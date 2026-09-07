@@ -92,6 +92,17 @@ Langzeit-Politik) - jeweils über einen anderen Mechanismus.
 Zum Vergleich löst diese Demo dieselbe Instanz zusätzlich **zentral** mit dem echten
 **Google-OR-Tools-CP-SAT-Solver**, der ALLE Aufträge von Anfang an kennt - der
 Unterschied zwischen beiden macht die Kosten der Dezentralität sichtbar.
+
+**Ein wichtiger Einwand vorab**: Contract Net ist ein **Online-Algorithmus** (jede
+Zuteilung fällt ohne Kenntnis künftiger Aufträge, unwiderruflich), CP-SAT löst die
+**Offline-Version** desselben Problems (vollständige Information vorab) - die beiden
+sind nicht einfach zwei Lösungen desselben Problems. Genau dieser Vergleich ist aber
+kein Kategorienfehler, sondern das Standardwerkzeug der Online-Algorithmen-Theorie:
+die **kompetitive Analyse** (Sleator & Tarjan, 1985) misst einen Online-Algorithmus
+exakt daran, wie weit er hinter dem Offline-Optimum zurückbleibt - der sogenannte
+**kompetitive Faktor**. Der unten gezeigte Prozentwert ist genau das, empirisch für
+Ihre aktuelle Instanz gemessen - kein bewiesener Worst-Case über alle möglichen
+Ankunftsreihenfolgen, sondern eine Stichprobe.
         """
     )
 
@@ -206,7 +217,9 @@ st.subheader("📐 Wie teuer wird die fehlende Weitsicht?")
 st.markdown(
     """
 Live für Ihre aktuelle Instanz: die vollständige, dezentrale Contract-Net-Vergabe
-gegen die zentrale **OR-Tools-CP-SAT-Lösung**, die alle Aufträge von Anfang an kennt.
+(Online, ohne Kenntnis künftiger Aufträge) gegen die zentrale **OR-Tools-CP-SAT-Lösung**
+(Offline, kennt alle Aufträge von Anfang an) - der empirische **kompetitive Faktor**
+für genau diese Instanz, keine bewiesene Worst-Case-Schranke.
 """
 )
 
@@ -266,6 +279,14 @@ Sequencing (inkl. Anfahrtszeit) zwischen Aufträgen desselben Agenten, und
 lexikografischem Tie-Breaking (`Minimize(makespan · W + \sum \text{Ende})`) gegen
 willkürlichen Leerlauf unter gleich-optimalen Lösungen - dieselbe Formel, die
 bereits in quaycrane-demo denselben Artefakt behoben hat.
+
+**Online vs. Offline, formal**: Contract Net ist ein Online-Algorithmus $\text{ALG}$ -
+Entscheidung für Auftrag $j$ fällt ohne Kenntnis von $j+1, \dots, n$. CP-SAT liefert
+$\text{OPT}$, das Offline-Optimum mit vollständiger Information. Die **kompetitive
+Analyse** (Sleator & Tarjan, 1985) definiert den kompetitiven Faktor gerade als
+$\text{ALG}/\text{OPT}$ - der oben gezeigte Gap-Prozentsatz ist $(\text{ALG} -
+\text{OPT})/\text{OPT}$, also dieselbe Größe, hier empirisch für eine konkrete
+Instanz statt als bewiesene Schranke über alle Eingaben.
 
 Implementiert in `cn_bidding.py` (die Gebotsformel), `cn_protocol.py`
 (Ankündigen-Bieten-Zuschlagen-Schleife) und `cn_ortools_reference.py` (echter
