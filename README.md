@@ -1,5 +1,7 @@
 # Contract Net Protocol an der Kran-Auftragsvergabe – Streamlit-Demo
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-contract-net-demo.streamlit.app/)**
+
 Erstes Stück der "Konzepte"-Reihe für die Website "Sebastian Hanisch – Operations
 Research und Machine Learning", **Multi-Agenten-Koordinations-Linie** - der Root
 dieser neuen Linie: das **Contract Net Protocol** (Smith, 1980) zeigt dezentrale
