@@ -116,7 +116,7 @@ PRESET_HELP = {
 preset_cols = st.columns(len(C.PRESETS))
 for i, name in enumerate(C.PRESETS.keys()):
     with preset_cols[i]:
-        st.button(name, use_container_width=True, on_click=apply_preset, args=(name,), help=PRESET_HELP[name])
+        st.button(name, width="stretch", on_click=apply_preset, args=(name,), help=PRESET_HELP[name])
 
 st.caption(
     "🔗 Die Adresszeile oben spiegelt Ihre aktuelle Konfiguration wider – einfach kopieren, "
@@ -144,7 +144,7 @@ with st.sidebar:
 
     st.button(
         "🎲 Neue Instanz generieren",
-        use_container_width=True,
+        width="stretch",
         on_click=randomize_seed,
         help="Würfelt einen neuen Zufalls-Seed für Auftragspositionen und -dauern.",
     )
@@ -174,7 +174,7 @@ with step_col:
             help="Ein Schritt = eine angekündigte und vergebene Auftrags-Runde, in Ankunftsreihenfolge.",
         )
 with play_col:
-    auto_play = st.button("▶️ Abspielen", use_container_width=True)
+    auto_play = st.button("▶️ Abspielen", width="stretch")
 
 cmp = _compute_comparison(*scenario_key)
 ortools_makespan = cmp["ortools_makespan"] if cmp["ortools_feasible"] else None
@@ -187,11 +187,11 @@ bid_slot = bid_col.empty()
 def _render(current_step):
     schedule_slot.plotly_chart(
         build_schedule_figure(instance, result, current_step, ortools_makespan),
-        use_container_width=True, key=f"schedule_{current_step}",
+        width="stretch", key=f"schedule_{current_step}",
     )
     bid_slot.plotly_chart(
         build_bid_chart(result.steps[current_step]),
-        use_container_width=True, key=f"bids_{current_step}",
+        width="stretch", key=f"bids_{current_step}",
     )
 
 
