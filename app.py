@@ -84,7 +84,7 @@ kennt zukünftige Aufträge nicht im Voraus:
 Auftrag **nie wieder infrage gestellt** - auch wenn ein späterer Auftrag zeigt, dass
 eine andere Zuteilung insgesamt besser gewesen wäre. Das Protokoll sieht immer nur
 den gerade angekündigten Auftrag, nie das große Ganze. Genau das beheben die
-nächsten (noch nicht gebauten) Stücke dieser Linie - Kombinatorische Auktionen
+weiteren Stücke dieser Linie - Kombinatorische Auktionen
 (Bündel-Gebote), Distributed Constraint Optimization (formaler
 Nachrichtenaustausch) und Multi-Agent Reinforcement Learning (gelernte
 Langzeit-Politik) - jeweils über einen anderen Mechanismus.
@@ -298,6 +298,6 @@ st.markdown("---")
 
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-    "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-    "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Multi-Agenten-Koordination erklärt](https://sebastianhanisch.net/konzepte-multiagenten.html)."
 )
