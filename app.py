@@ -109,7 +109,7 @@ Ankunftsreihenfolgen, sondern eine Stichprobe.
 st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 PRESET_HELP = {
     "Ausgeglichene Basis": "6 Aufträge, gleichmäßige Dauer - die Kurzsichtigkeit des Protokolls kostet hier kaum etwas.",
-    "Ein großer Auftrag früh": "Ein früher, ungewöhnlich langer Auftrag bindet einen Agenten - ein danach angekündigter, eigentlich naheliegender Auftrag muss an einen weit entfernten Agenten gehen.",
+    "Ein großer Auftrag früh": "Ein ungewöhnlich langer Auftrag (53 min, der fünfte von sechs) geht an den Agenten, der ihn zuerst fertig bekäme - und der hat da schon zwei Aufträge. Contract Net sieht nicht, dass der andere Agent danach fast leer ausgeht: 87 gegenüber 39 min, das zentrale Optimum schafft 70 min (Lücke 23,8 %).",
     "Mehr Agenten, mehr Kontention": "Mehr Aufträge und Agenten - mehr Gelegenheiten für eine früh getroffene, nicht mehr korrigierbare Fehlentscheidung.",
     "Worst Case: Sequenzielle Falle": "Wenige Agenten, große Streuung, teure Anfahrten - die Lücke zum zentralen Optimum wird am deutlichsten.",
 }
