@@ -39,7 +39,7 @@ test_single_agent_cnp_can_lose_to_cp_sat_on_ordering_alone`).
 Die ursprüngliche Annahme war: `duration_variability=0` (keine Ausreißer) sollte
 eine durchgehend kleine Lücke zeigen, erst höhere Werte sollten sie sichtbar
 machen. Ein Kalibrierungs-Sweep über 20 Seeds bei `duration_variability=0` zeigte
-stattdessen eine Lücke zwischen **-0,8 % und 74,7 %** - die Positions-/
+stattdessen eine Lücke zwischen **0,0 % und 76,0 %** (die ursprüngliche Messung -0,8 % war ein Rundungsartefakt des CP-SAT-Rasters, siehe Verifikation) - die Positions-/
 Reihenfolge-Struktur allein treibt die Lücke schon erheblich, unabhängig von
 Auftragsdauer-Ausreißern. Presets wurden deshalb nicht nach der ersten
 plausiblen Parameterkombination benannt, sondern nach tatsächlich gemessenen,
@@ -62,8 +62,13 @@ Kommentar) - dieselbe "sweep vor Behauptung" Disziplin wie im übrigen Portfolio
 - **Unumkehrbarkeit**: einmal vergebene Aufträge ändern nie den Agenten
   (`test_once_awarded_a_job_never_changes_agent_across_later_steps`).
 - **Vollständigkeit**: jeder Auftrag wird genau einmal zugeteilt.
-- **Optimalitätsschranke**: Contract Net schlägt nie das CP-SAT-Optimum (bis auf
-  die bewusste, dokumentierte Rundungstoleranz des skalierten CP-SAT-Modells).
+- **Optimalitätsschranke**: Contract Net schlägt nie das CP-SAT-Optimum. Das Modell
+  rechnet auf einem aufgerundeten 0,1-Minuten-Raster; gemeldet wird der exakt
+  nachgerechnete Zeitplan der gefundenen Lösung (vorher lag der Rasterwert bis über
+  1 % zu hoch und zeigte bei 13 von 120 Zufallsinstanzen im Reglerbereich ein „Contract Net schlägt
+  das Optimum“). Gegen eine unabhängige exakte Teilmengen-DP liegt CP-SAT höchstens
+  0,26 % über dem Optimum (201 + 320 Instanzen; kleine Fassung: `tests/test_oracle_contract_net.py`).
+  Nur außerhalb des Reglerbereichs (n ≤ 2 Aufträge) ist der Zeithorizont des Modells zu knapp.
 - **Bruteforce- und Ein-Agenten-Cross-Check**: CP-SAT stimmt mit vollständiger
   Enumeration überein; im Ein-Agenten-Fall serviert Contract Net nachweislich in
   reiner Ankunftsreihenfolge.

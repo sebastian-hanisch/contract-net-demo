@@ -28,7 +28,7 @@ GAP_HIGHLIGHT_THRESHOLD_PCT = 10.0
 
 # Seeds empirisch kalibriert via calibrate_presets.py (2026-09-07) - nicht der erste
 # Versuch übernommen. Realer Fund dabei: selbst bei duration_variability=0 schwankt die
-# Lücke zu CP-SAT stark (-0,8% bis 74,7% über 20 Seeds) - die Positions-/Reihenfolge-
+# Lücke zu CP-SAT stark (0,0% bis 76,0% über 20 Seeds; die frühere Messung -0,8% war ein Rundungsartefakt des CP-SAT-Rasters) - die Positions-/Reihenfolge-
 # Struktur allein treibt die Lücke schon, nicht nur Auftragsdauer-Spitzen.
 PRESETS = {
     "Ausgeglichene Basis": {
