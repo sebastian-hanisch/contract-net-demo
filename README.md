@@ -2,14 +2,13 @@
 
 **[→ Demo live ausprobieren](https://sebastianhanisch-contract-net-demo.streamlit.app/)**
 
-Erstes Stück der "Konzepte"-Reihe für die Website "Sebastian Hanisch – Operations
-Research und Machine Learning", **Multi-Agenten-Koordinations-Linie** - der Root
-dieser neuen Linie: das **Contract Net Protocol** (Smith, 1980) zeigt dezentrale
+Demo für die Website "Sebastian Hanisch – Operations Research und Machine Learning"
+zum Thema **Multi-Agenten-Koordination**: das **Contract Net Protocol** (Smith, 1980) zeigt dezentrale
 Aufgabenvergabe (ankündigen → bieten → zuschlagen) statt eines zentralen Solvers.
 
 ## Warum ein eigenes, vereinfachtes Vehikel statt quaycrane-demo
 
-Das Vokabular (Kräne, Aufträge, Positionen) ist an das Schwester-Fall-Demo
+Das Vokabular (Kräne, Aufträge, Positionen) ist an die Demo
 [quaycrane-demo](../quaycrane-demo) angelehnt, aber die Struktur bewusst
 vereinfacht: **keine gemeinsame Schiene, keine Non-Crossing-Regel** zwischen
 Agenten. quaycrane-demo behandelt bereits eigenständig die physische

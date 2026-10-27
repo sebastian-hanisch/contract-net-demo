@@ -50,7 +50,7 @@ def _compute_comparison(n_jobs, n_agents, duration_variability, travel_time_per_
 st.title("📡 Contract Net Protocol an der Kran-Auftragsvergabe")
 st.markdown(
     """
-Der Auftakt einer neuen Konzepte-Linie: **Multi-Agenten-Koordination** - dezentrale
+Es geht um **Multi-Agenten-Koordination** - dezentrale
 Entscheidungsfindung statt eines zentralen Solvers. Beim **Contract Net Protocol**
 (Smith, 1980) kündigt ein Manager Aufträge einzeln an; jeder Agent (hier: ein Kran)
 bietet seine eigene, rein lokale Fertigstellungszeit; der Zuschlag geht an das
@@ -72,10 +72,10 @@ Der Haken: Ein Zuschlag wird nie zurückgenommen, und niemand kennt die spätere
     )
 # erklaerseite:einfach:end
 st.caption(
-    "Anders als die Fall-Demos im Portfolio, die an einem Anwendungsfall mehrere Verfahren "
-    "vergleichen, zeigt diese Demo - wie die übrigen Stücke der Konzepte-Reihe - EIN Verfahren "
+    "Anders als Demos, die an einem Anwendungsfall mehrere Verfahren "
+    "vergleichen, zeigt diese Demo EIN Verfahren "
     "an einem wachsenden Beispiel. Das Vehikel ist eine bewusst vereinfachte Kran-zu-Container-"
-    "Auftrag-Zuweisung, inspiriert vom Schwester-Fall-Demo quaycrane-demo, aber OHNE dessen "
+    "Auftrag-Zuweisung, inspiriert von der Demo quaycrane-demo, aber OHNE deren "
     "gemeinsame Schiene/Non-Crossing-Regel - hier geht es um den Koordinations-Mechanismus, "
     "nicht um die physische Kran-Choreographie."
 )
@@ -93,11 +93,11 @@ kennt zukünftige Aufträge nicht im Voraus:
 - **Zuschlagen**: das niedrigste Gebot gewinnt. Der Agent aktualisiert seine Position
   und freie Zeit entsprechend.
 
-**Die strukturelle Schwäche, die dieses Stück lehrt**: einmal vergeben, wird ein
+**Die strukturelle Schwäche, die diese Demo zeigt**: einmal vergeben, wird ein
 Auftrag **nie wieder infrage gestellt** - auch wenn ein späterer Auftrag zeigt, dass
 eine andere Zuteilung insgesamt besser gewesen wäre. Das Protokoll sieht immer nur
 den gerade angekündigten Auftrag, nie das große Ganze. Genau das beheben die
-weiteren Stücke dieser Linie - Kombinatorische Auktionen
+weiteren Demos zu diesem Thema - Kombinatorische Auktionen
 (Bündel-Gebote), Distributed Constraint Optimization (formaler
 Nachrichtenaustausch) und Multi-Agent Reinforcement Learning (gelernte
 Langzeit-Politik) - jeweils über einen anderen Mechanismus.
