@@ -43,7 +43,7 @@ def test_presets_produce_gap_in_expected_band():
     # haelt die Presets ehrlich, falls cn_scenario/cn_bidding sich mal aendern.
     expected_bands = {
         "Ausgeglichene Basis": (0.0, 15.0),
-        "Ein großer Auftrag früh": (15.0, 35.0),
+        "Ein großer Auftrag spät": (15.0, 35.0),
         "Mehr Agenten, mehr Kontention": (20.0, 45.0),
         "Worst Case: Sequenzielle Falle": (40.0, 75.0),
     }
@@ -58,3 +58,23 @@ def test_presets_produce_gap_in_expected_band():
         assert cmp["ortools_feasible"], name
         lo, hi = expected_bands[name]
         assert lo <= cmp["gap_pct"] <= hi, f"{name}: gap={cmp['gap_pct']:.1f}%"
+
+
+def test_preset_help_numbers_of_the_late_big_job_example():
+    # Belegt die Zahlen im Hilfetext des Beispiels "Ein großer Auftrag spät" in app.py (PRESET_HELP).
+    p = C.PRESETS["Ein großer Auftrag spät"]
+    instance = generate_instance(
+        n_jobs=p["n_jobs"], n_agents=p["n_agents"], duration_variability=p["duration_variability"],
+        travel_time_per_unit=p["travel_time_per_unit"], seed=p["seed"],
+    )
+    result = run_protocol(instance)
+    longest = max(instance.jobs, key=lambda j: j.duration)
+    assert longest.index == 4 and instance.n_jobs == 6          # der fünfte von sechs
+    assert round(longest.duration) == 53
+    winner = result.assignment[longest.index]
+    assert sum(1 for k, a in result.assignment.items() if a == winner and k < longest.index) == 2   # schon zwei Aufträge
+    assert round(max(result.agent_finish_times)) == 87
+    assert round(min(result.agent_finish_times)) == 39
+    cmp = comparison(instance, result, time_limit_seconds=8.0)
+    assert cmp["ortools_optimal"] and round(cmp["ortools_makespan"]) == 70
+    assert round(cmp["gap_pct"], 1) == 24.2

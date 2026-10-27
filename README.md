@@ -26,7 +26,7 @@ Jeder Agent bietet rein lokal: "wenn ich diesen Auftrag ans Ende meiner eigenen
 Warteschlange hänge, wann bin ich fertig?" Der Zuschlag geht ans niedrigste Gebot -
 und bleibt **für immer bestehen**, egal was später angekündigt wird. Ein
 überraschender, empirisch gefundener Fund beim Kalibrieren (siehe unten): selbst
-bei völlig gleichmäßiger Auftragsdauer (keine "Ausreißer") schwankt die Lücke zum
+ohne ungewöhnlich lange Aufträge (`duration_variability=0`; die Grunddauern bleiben zufällig) schwankt die Lücke zum
 zentralen Optimum stark - schon die reine Positions-/Reihenfolge-Struktur macht
 eine frühe, unumkehrbare Zuteilung teuer, nicht nur ungewöhnlich lange Aufträge.
 Sogar mit nur **einem** Agenten kann das Protokoll gegen die zentrale Lösung
@@ -36,10 +36,10 @@ test_single_agent_cnp_can_lose_to_cp_sat_on_ordering_alone`).
 
 ## Eine Überraschung beim Kalibrieren, nicht vorab angenommen
 
-Die ursprüngliche Annahme war: `duration_variability=0` (keine Ausreißer) sollte
+Die ursprüngliche Annahme war: `duration_variability=0` (keine ungewöhnlich langen Aufträge) sollte
 eine durchgehend kleine Lücke zeigen, erst höhere Werte sollten sie sichtbar
 machen. Ein Kalibrierungs-Sweep über 20 Seeds bei `duration_variability=0` zeigte
-stattdessen eine Lücke zwischen **0,0 % und 76,0 %** (die ursprüngliche Messung -0,8 % war ein Rundungsartefakt des CP-SAT-Rasters, siehe Verifikation) - die Positions-/
+stattdessen eine Lücke zwischen **0,0 % und 76,0 %** (das Kalibrierungsskript liegt nicht im Repo; ob nach der Rasterkorrektur neu gemessen wurde, ist nicht dokumentiert; die ursprüngliche Messung -0,8 % war ein Rundungsartefakt des CP-SAT-Rasters, siehe Verifikation) - die Positions-/
 Reihenfolge-Struktur allein treibt die Lücke schon erheblich, unabhängig von
 Auftragsdauer-Ausreißern. Presets wurden deshalb nicht nach der ersten
 plausiblen Parameterkombination benannt, sondern nach tatsächlich gemessenen,
@@ -67,7 +67,7 @@ Kommentar) - dieselbe "sweep vor Behauptung" Disziplin wie im übrigen Portfolio
   nachgerechnete Zeitplan der gefundenen Lösung (vorher lag der Rasterwert bis über
   1 % zu hoch und zeigte bei 13 von 120 Zufallsinstanzen im Reglerbereich ein „Contract Net schlägt
   das Optimum“). Gegen eine unabhängige exakte Teilmengen-DP liegt CP-SAT höchstens
-  0,26 % über dem Optimum (201 + 320 Instanzen; kleine Fassung: `tests/test_oracle_contract_net.py`).
+  0,26 % über dem Optimum (201 + 320 Instanzen; die Messreihe und die Zählung „13 von 120“ liegen nicht im Repo, nur eine kleine Fassung mit 25 Instanzen, n = 4 bis 5 Aufträge, 2 bis 3 Agenten und 1 % Toleranz: `tests/test_oracle_contract_net.py`). Daraus folgt „nie“ nur für die geprüften Instanzen.
   Nur außerhalb des Reglerbereichs (n ≤ 2 Aufträge) ist der Zeithorizont des Modells zu knapp.
 - **Bruteforce- und Ein-Agenten-Cross-Check**: CP-SAT stimmt mit vollständiger
   Enumeration überein; im Ein-Agenten-Fall serviert Contract Net nachweislich in

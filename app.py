@@ -58,6 +58,19 @@ niedrigste Gebot. Schnell und robust - aber wie der aufgeklappte Abschnitt direk
 darunter zeigt, hat das einen strukturellen Preis.
 """
 )
+
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/auftragsverhandlung-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Stellen Sie sich mehrere Kräne im Hafen vor und eine Folge von Aufträgen, die nacheinander eintreffen. Für jeden neuen Auftrag nennt jeder Kran, wann er damit fertig wäre, wenn er ihn ans Ende seiner eigenen Liste hängt. Das niedrigste Gebot bekommt den Zuschlag. Eine Zentrale, die alles plant, gibt es nicht.
+
+Der Haken: Ein Zuschlag wird nie zurückgenommen, und niemand kennt die späteren Aufträge. Die Demo rechnet deshalb zum Vergleich einen zentralen Plan, der alle Aufträge von Anfang an kennt. Der Abstand zwischen beiden Ergebnissen zeigt, was die Dezentralität kostet. Er kann null sein oder groß, selbst wenn kein Auftrag ungewöhnlich lang ist.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/auftragsverhandlung-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
 st.caption(
     "Anders als die Fall-Demos im Portfolio, die an einem Anwendungsfall mehrere Verfahren "
     "vergleichen, zeigt diese Demo - wie die übrigen Stücke der Konzepte-Reihe - EIN Verfahren "
@@ -100,7 +113,7 @@ sind nicht einfach zwei Lösungen desselben Problems. Genau dieser Vergleich ist
 kein Kategorienfehler, sondern das Standardwerkzeug der Online-Algorithmen-Theorie:
 die **kompetitive Analyse** (Sleator & Tarjan, 1985) misst einen Online-Algorithmus
 exakt daran, wie weit er hinter dem Offline-Optimum zurückbleibt - der sogenannte
-**kompetitive Faktor**. Der unten gezeigte Prozentwert ist genau das, empirisch für
+**kompetitive Faktor**. Der unten gezeigte Prozentwert ist dieser Faktor minus eins (in Prozent), empirisch für
 Ihre aktuelle Instanz gemessen - kein bewiesener Worst-Case über alle möglichen
 Ankunftsreihenfolgen, sondern eine Stichprobe.
         """
@@ -108,8 +121,8 @@ Ankunftsreihenfolgen, sondern eine Stichprobe.
 
 st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 PRESET_HELP = {
-    "Ausgeglichene Basis": "6 Aufträge, gleichmäßige Dauer - die Kurzsichtigkeit des Protokolls kostet hier kaum etwas.",
-    "Ein großer Auftrag früh": "Ein ungewöhnlich langer Auftrag (53 min, der fünfte von sechs) geht an den Agenten, der ihn zuerst fertig bekäme - und der hat da schon zwei Aufträge. Contract Net sieht nicht, dass der andere Agent danach fast leer ausgeht: 87 gegenüber 39 min, das zentrale Optimum schafft 70 min (Lücke 24,2 %).",
+    "Ausgeglichene Basis": "6 Aufträge, keine ungewöhnlich langen - die Kurzsichtigkeit des Protokolls kostet hier weniger als in den anderen drei Beispielen.",
+    "Ein großer Auftrag spät": "Ein ungewöhnlich langer Auftrag (53 min, der fünfte von sechs) geht an den Agenten, der ihn zuerst fertig bekäme - und der hat da schon zwei Aufträge. Contract Net sieht nicht, dass der andere Agent danach fast leer ausgeht: 87 gegenüber 39 min, das zentrale Optimum schafft 70 min (Lücke 24,2 %).",
     "Mehr Agenten, mehr Kontention": "Mehr Aufträge und Agenten - mehr Gelegenheiten für eine früh getroffene, nicht mehr korrigierbare Fehlentscheidung.",
     "Worst Case: Sequenzielle Falle": "Wenige Agenten, große Streuung, teure Anfahrten - die Lücke zum zentralen Optimum wird am deutlichsten.",
 }
@@ -252,6 +265,28 @@ if cmp["gap_pct"] is not None:
 st.markdown("---")
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/auftragsverhandlung-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind Kräne (Agenten) und $n$ Aufträge, die einzeln in Ankunftsreihenfolge angekündigt werden. Gesucht ist für jeden Auftrag der Kran, der ihn übernimmt, sodass die Zeit bis zur Fertigstellung aller Aufträge (der Makespan) klein bleibt.
+
+| Symbol | Bedeutung |
+|---|---|
+| $a$ | Agent (Kran) |
+| $p_a$ | aktuelle Position des Krans $a$ |
+| $f_a$ | Zeitpunkt, ab dem der Kran $a$ frei ist (freie Zeit) |
+| $j$, $q_j$, $d_j$ | Auftrag $j$, seine Position und seine Dauer |
+| $\tau$ | Anfahrtszeit pro Positionseinheit |
+| $\lvert p_a - q_j\rvert$ | Abstand zwischen Kran $a$ und Auftrag $j$ |
+| $\text{Gebot}(a, j)$ | Zeitpunkt, zu dem Kran $a$ den Auftrag $j$ fertig hätte, wenn er ihn ans Ende seiner Liste hängt |
+| $\max_a f_a$ | Makespan: Zeitpunkt, zu dem der letzte Kran fertig ist |
+| $x_{j,a}$ | im zentralen Modell: 1, wenn Auftrag $j$ dem Kran $a$ zugewiesen wird, sonst 0 |
+| $\text{ALG}$, $\text{OPT}$ | Ergebnis des Contract Net Protocol bzw. des zentralen Optimums mit vollständiger Information |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/auftragsverhandlung-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Gebot** von Agent $a$ mit aktueller Position $p_a$ und freier Zeit $f_a$ für

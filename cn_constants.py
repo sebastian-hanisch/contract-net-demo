@@ -35,7 +35,7 @@ PRESETS = {
         "n_jobs": 6, "n_agents": 2, "duration_variability": 0.0,
         "travel_time_per_unit": 1.0, "seed": 2,
     },
-    "Ein großer Auftrag früh": {
+    "Ein großer Auftrag spät": {
         "n_jobs": 6, "n_agents": 2, "duration_variability": 0.5,
         "travel_time_per_unit": 1.0, "seed": 10,
     },
