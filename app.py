@@ -232,7 +232,8 @@ st.markdown(
 Live für Ihre aktuelle Instanz: die vollständige, dezentrale Contract-Net-Vergabe
 (Online, ohne Kenntnis künftiger Aufträge) gegen die zentrale **OR-Tools-CP-SAT-Lösung**
 (Offline, kennt alle Aufträge von Anfang an) - der empirische **kompetitive Faktor**
-für genau diese Instanz, keine bewiesene Worst-Case-Schranke.
+für genau diese Instanz, keine bewiesene Worst-Case-Schranke. Verglichen wird die
+Fertigstellungszeit (Makespan): die Zeit, bis der letzte Kran seinen letzten Auftrag beendet hat.
 """
 )
 
